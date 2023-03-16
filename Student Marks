@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edit this template
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <?php
+        //database initialization
+        $database = 'students_marks';
+        $username = 'root';
+        $password = '';
+        $server = 'localhost:4306';
+        $database_connection = mysqli_connect($server,$username, $password,
+                $database);
+        if (!$database_connection)
+        {
+            echo "Connection to database unsuccessful";
+            exit();
+        }
+        
+        $sqlQuery = "SELECT * FROM mytable WHERE Student_ID=?";
+        
+        $statement = mysqli_prepare($database_connection, $sqlQuery);
+        
+        $StudentID = "837";
+        mysqli_stmt_bind_param($statement, "s", $StudentID);
+        mysqli_execute($statement);
+        
+        $result = mysqli_stmt_get_result($statement);
+        
+        $addMaths_marks = [];
+        $maths_marks = [];
+        $apMaths_marks = [];
+        $form = [];
+        $term = [];
+        echo "<th>Marks </th> for Student ID: ". $StudentID;
+        echo "<table>";
+        echo "<th>Form</th> <th>Term</th> <th>AddMaths </th> <th>Mathematics </th>";
+        while ($row = mysqli_fetch_assoc($result))
+        {
+            array_push($form, $row['Form']);
+            array_push($term, $row['Term']);
+            array_push($addMaths_marks, $row['AdMa']);
+            array_push($maths_marks, $row['Mathematics']);
+            array_push($apMaths_marks, $row['ApMa']);
+        }
+        
+        for ($i = 0; $i != count($apMaths_marks); $i++)
+        {
+            echo "<tr>"."<td>".$form[$i]."</td>"."<td>".$term[$i]."</td>". "<td>".$addMaths_marks[$i]."</td>"."<td>".$maths_marks[$i]. "</td>". "</tr>";
+        }
+        ?>
+    </body>
+</html>
