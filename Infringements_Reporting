@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edit this template
+-->
+ 
+<head>
+        <meta charset="UTF-8">
+        <title>Access Student Info</title>
+    
+     <style>
+     h1 {text-align: center;}
+     body{
+         font-family: "Arial", Sans-Serif;
+         background-color:#F0F8FF;}
+     form{
+    width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+ 
+    text-align: center;
+    margin: auto;
+    position: absolute;
+     top: 50%;
+     -ms-transform: translateY(50%);
+     transform: translateY(50%);
+     right: 50%;
+     -ms-transform: translateX(50%);
+     transform: translateX(50%);
+     }
+     input {
+  display: block; /* make the input a block element */
+  width: 100%; /* set the input width to 100% of the parent container */
+  padding: 5px; /* add some padding to the input */
+  box-sizing: border-box; /* include padding and border in the input's width */
+}
+ 
+     label {
+  display: block; /* make the label a block element */
+  margin-bottom: 5px; /* add some spacing between the label and input */
+}
+ 
+   </style>
+     
+    </head>
+    <h1>Carapachaima East Secondary<br>Staff</h1>
+    <body>      
+        <form method="post">
+        Enter The ID of the student whose infringement information you
+        will like to access or modify
+        <br>
+           <Label for "ID"> ID:</label>
+           <input type="number" id="ID"><br>
+           <button type="submit" name="Access" id="Access">Access</button>
+        
+       <?php
+            if (isset($_POST['Access']))
+           {
+               echo"
+               <br>
+               Please select the nature of the infringement from the dropdown list
+               <br>
+               <br>
+               <select for='Infringements'> Select:
+               <option value='A'> A </option>
+               <option value='B'> B </option>
+               <option value='C'> C </option>
+               <option value='D'> D </option>
+               </select>
+               <br>
+               <br>
+               Additional Comments/Information on the infraction
+               <br>
+               <input type='text' id='Infr_Comment'><br>
+               <button type='submit' name='Add_Infr_Entry' id='Add_Infr_Entry'>Add Entry</button>
+               ";
+               If (isset($_POST['Add_Infr_Entry']))
+               {
+                   echo "Successfully Added!";
+               }  
+           } 
+           echo "</body>";
+           echo "</html>";
+       
+    
